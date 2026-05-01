@@ -1,4 +1,4 @@
-import React, { useState, type KeyboardEvent } from 'react'
+import React, { useEffect, useState, type KeyboardEvent } from 'react'
 
 interface Props {
   placeholder: string,
@@ -8,6 +8,18 @@ interface Props {
 const SearchdBar = ({placeholder = "Buscar", onQuery} : Props) => {
   
   const [query, setQuery] = useState('')
+
+  // se dispara cuando se renderza el componente, es comun ver que se usa para hacer peticiones
+  // en ese caso es como el mounted, ejecutando cosas despues de que renderiza el componente
+  useEffect(() => {
+    const timeoutId = setTimeout (() => {
+      onQuery(query);
+    }, 700)
+
+    return () => {
+      clearTimeout(timeoutId);
+    }
+  }, [query, onQuery])
 
   const handleSearch = () => {
     onQuery(query);
@@ -32,6 +44,7 @@ const SearchdBar = ({placeholder = "Buscar", onQuery} : Props) => {
         <button onClick={handleSearch}>Buscar</button>
     </div>
   )
+  
 }
 
 export default SearchdBar
