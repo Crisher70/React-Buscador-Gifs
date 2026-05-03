@@ -1,7 +1,5 @@
 // rafc crea un nuevo componente
 
-import React from 'react'
-
 interface Props {
     title:string;
     descripcion?: string

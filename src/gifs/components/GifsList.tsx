@@ -1,6 +1,6 @@
 
-import React, { type FC } from 'react'
-import type { Gif } from '../../mock-data/gifs.mock'
+import { type FC } from 'react'
+import type { Gif } from '../interfaces/gif.response'
 
 interface Props {
     gifs: Gif[]
